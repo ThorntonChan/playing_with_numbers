@@ -1,13 +1,12 @@
 package app;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import service.PlayWithPrimes;
+
+public class App {
+    public static void main( String[] args ) throws Exception {
+        PlayWithPrimes newNumbersGame = new PlayWithPrimes(3, 15,0, 50);
+        newNumbersGame.getArrays();
+        newNumbersGame.getCommonExclusions();
+        newNumbersGame.getLargestPrime();
     }
 }
