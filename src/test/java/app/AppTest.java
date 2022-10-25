@@ -32,11 +32,11 @@ public class AppTest extends TestCase {
                 assertEquals(0, num);
             }
         }
-        newGame = new PlayWithPrimes(3, 20, 1, 3);
+        newGame = new PlayWithPrimes(3, 20, 99, 105);
         arrays = newGame.getArrays();
         for (int[] array : arrays){
             for (int num : array) {
-                assertTrue(num >= 1 && num <= 3);
+                assertTrue(num >= 99 && num <= 105);
             }
         }
     }

@@ -7,10 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PlayWithPrimes {
-    private int lowerBound;
-    private int upperBound;
-    private List<int[]> arrays = new ArrayList<int[]>();
-    private int[] commonExclusions;
+    private final int lowerBound;
+    private final int upperBound;
+    private final List<int[]> arrays = new ArrayList<int[]>();
+    private int[] availableNumbers;
     private int largestPrime = 0;
 
     public PlayWithPrimes(int numberOfArrays, int arrayLength, int lowerBound, int upperBound) throws Exception {
@@ -19,8 +19,6 @@ public class PlayWithPrimes {
         }
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
-//        this.commonExclusions = ArrayUtils.getCommonIntArrayExclusions(arrays, lowerBound, upperBound);
-//        this.largestPrime = ArrayUtils.getIntArrayLargestPrime(commonExclusions);
     }
 
     public List<int[]> getArrays() {
@@ -30,33 +28,25 @@ public class PlayWithPrimes {
         return this.arrays;
     }
 
-    private void findCommonExclusions(){
-        this.commonExclusions = ArrayUtils.getCommonIntArrayExclusions(arrays, lowerBound, upperBound);
+    public int[] getAvailableNumbers() {
+        if (this.availableNumbers == null)
+            this.availableNumbers = ArrayUtils.getCommonIntArrayExclusions(arrays, lowerBound, upperBound);
+        System.out.printf("The common exclusions are %s\n", Arrays.toString(this.availableNumbers));
+        return this.availableNumbers;
     }
 
-    public int[] getCommonExclusions() {
-        if (this.commonExclusions == null)
-            findCommonExclusions();
-        System.out.printf("The common exclusions are %s\n", Arrays.toString(this.commonExclusions));
-        return this.commonExclusions;
-    }
-
-    private int findLargestPrime(){
-        this.largestPrime = ArrayUtils.getIntArrayLargestPrime(commonExclusions);
-        return this.largestPrime;
-    }
-
-    public void getLargestPrime() {
+    public int getLargestPrime() {
         if (this.largestPrime == 0) {
-            if (this.commonExclusions == null)
-                findCommonExclusions();
-            findLargestPrime();
+            if (this.availableNumbers == null)
+                getAvailableNumbers();
+            this.largestPrime = ArrayUtils.getLargestPrimeFromSortedArray(availableNumbers);
         }
         if (this.largestPrime == -1) {
             System.out.print("There are no primes excluded!\n");
         } else {
             System.out.printf("The largest excluded prime is %d!\n", this.largestPrime);
         }
+        return this.largestPrime;
     }
 
 }
