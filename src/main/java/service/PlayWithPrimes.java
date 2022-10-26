@@ -11,7 +11,7 @@ public class PlayWithPrimes {
     private final int upperBound;
     private final List<int[]> arrays = new ArrayList<int[]>();
     private int[] availableNumbers;
-    private int largestPrime = 0;
+    private int largestPrime = 0; //default = 0, none found = -1
 
     public PlayWithPrimes(int numberOfArrays, int arrayLength, int lowerBound, int upperBound) throws Exception {
         for (int i = 0; i < numberOfArrays; ++ i) {
@@ -31,7 +31,7 @@ public class PlayWithPrimes {
     public int[] getAvailableNumbers() {
         if (this.availableNumbers == null)
             this.availableNumbers = ArrayUtils.getCommonIntArrayExclusions(arrays, lowerBound, upperBound);
-        System.out.printf("The common exclusions are %s\n", Arrays.toString(this.availableNumbers));
+        System.out.printf("The available numbers are %s\n", Arrays.toString(this.availableNumbers));
         return this.availableNumbers;
     }
 

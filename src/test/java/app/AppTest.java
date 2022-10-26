@@ -17,6 +17,12 @@ public class AppTest extends TestCase {
         return new TestSuite( AppTest.class );
     }
 
+    public void testPlayingWithPrimes() throws Exception {
+        PlayWithPrimes newNumbersGame = new PlayWithPrimes(3, 15,0, 50);
+//        newNumbersGame.getArrays();
+        newNumbersGame.getAvailableNumbers();
+//        newNumbersGame.getLargestPrime();
+    }
     public void testConstructorGeneration() throws Exception {
         PlayWithPrimes newGame = new PlayWithPrimes(400, 2, 0, 50);
         List<int[]> arrays = newGame.getArrays();
@@ -39,5 +45,11 @@ public class AppTest extends TestCase {
                 assertTrue(num >= 99 && num <= 105);
             }
         }
+        try {
+            new PlayWithPrimes(3, 20, -1, -5);
+        } catch (Exception e) {
+            return;
+        }
+        fail("Expected 'Cannot generate array with inverted bounds!' Exception");
     }
 }

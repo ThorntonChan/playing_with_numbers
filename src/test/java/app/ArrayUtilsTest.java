@@ -87,6 +87,10 @@ public class ArrayUtilsTest extends TestCase {
         assertEquals(97, ArrayUtils.getLargestPrimeFromSortedArray(arr));
         arr = new int[]{8,64,1080,4999952};
         assertEquals(-1, ArrayUtils.getLargestPrimeFromSortedArray(arr));
+        arr = new int[0];
+        assertEquals(-1, ArrayUtils.getLargestPrimeFromSortedArray(arr));
+        arr = new int[1];
+        assertEquals(-1, ArrayUtils.getLargestPrimeFromSortedArray(arr));
     }
 
 }
